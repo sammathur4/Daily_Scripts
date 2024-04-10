@@ -1,0 +1,13 @@
+dist/
+build/
+__pycache__/
+.vscode/
+venv/
+chrome-data/
+chromedriver/
+secrets.py
+*.log
+*.txt
+*.spec
+
+
