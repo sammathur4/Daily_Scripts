@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/AutoMates" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/EasyApplyJobsBot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JobSpy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/common-intern" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/linkedin-easy-apply-bot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/new2/EasyApplyJobsBot" vcs="Git" />
+  </component>
+</project>
