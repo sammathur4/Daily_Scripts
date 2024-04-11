@@ -2,11 +2,13 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/AutoMates" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/EasyApplyJobsBot" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/JobSpy" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/common-intern" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/linkedin-easy-apply-bot" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/new2/EasyApplyJobsBot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/depre/job-bender" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/AutoMates" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/EasyApplyJobsBot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/EasyApplyJobsBot_fork" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/JobSpy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/Naukri-autoapply-bot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/common-intern" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/linkedin-easy-apply-bot" vcs="Git" />
   </component>
 </project>
