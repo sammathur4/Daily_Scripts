@@ -14,17 +14,18 @@ from selenium.webdriver.chrome.service import Service
 from time import sleep
 
 home_directory = path.expanduser("~")
-local_bin_directory = home_directory + '/bin/'
+local_bin_directory = home_directory + "/bin/"
 
 
-class LinkedinBot():
+class LinkedinBot:
 
     def __init__(self, any_profile_link):
         # term = self.term
         self.page_number = 5
         chrome_options = Options()
         chrome_options.add_argument(
-            f"--user-data-dir={local_bin_directory}/chrome-data")
+            f"--user-data-dir={local_bin_directory}/chrome-data"
+        )
         chrome_options.add_experimental_option("useAutomationExtension", False)
 
         service = Service()
@@ -39,13 +40,13 @@ class LinkedinBot():
 
     def stalk_on(self):
 
-        html = self.driver.find_element(by=By.TAG_NAME, value='html')
-
+        html = self.driver.find_element(by=By.TAG_NAME, value="html")
 
         while 1:
             info = self.driver.find_elements(
-                by=By.CLASS_NAME, value="pv-text-details__left-panel")
-            
+                by=By.CLASS_NAME, value="pv-text-details__left-panel"
+            )
+
             print(info[0].text)
             print(info[1].text)
 
@@ -57,21 +58,21 @@ class LinkedinBot():
             # click one of the 5 profiles profiles on the right side
             try:
                 side_profiles = self.driver.find_elements(
-                    by=By.XPATH, value="//a[@data-field='browsemap_card_click']")
+                    by=By.XPATH, value="//a[@data-field='browsemap_card_click']"
+                )
                 # print(len(side_profiles), j, side_profiles)
 
                 file = open("filename.txt", "w")
                 print("-------------------", j, len(side_profiles), file=file, end="\n")
                 file.close()
 
-                
                 side_profiles[j].click()
             except NoSuchElementException as NoSuch:
                 print(NoSuch, "\n cool")
             sleep(5)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     position = argv[1]
     location = argv[2]
 

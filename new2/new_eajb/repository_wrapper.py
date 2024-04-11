@@ -14,18 +14,23 @@ def init():
 def import_backend_module():
     try:
         print(load_dotenv(".env"))
-        
+
         from frontend.utils import (
             api as backend_api,  # Change this line with your backend module
         )
-        utils.logDebugMessage(f"Successfully imported backend module", utils.MessageTypes.SUCCESS)
+
+        utils.logDebugMessage(
+            f"Successfully imported backend module", utils.MessageTypes.SUCCESS
+        )
 
         return True, backend_api
-    
+
     except ImportError as e:
-        utils.logDebugMessage(f"Could not import backend module: {e}", utils.MessageTypes.WARNING)
+        utils.logDebugMessage(
+            f"Could not import backend module: {e}", utils.MessageTypes.WARNING
+        )
         return False, None
-    
+
 
 def verify_jobs(jobs):
     if initialized:
@@ -33,10 +38,12 @@ def verify_jobs(jobs):
             utils.logDebugMessage(f"Verifying jobs: {jobs}")
             jobs = backend_api.verify_jobs(jobs)
         except Exception as e:
-            utils.logDebugMessage(f"Error verifying jobs: {e}", utils.MessageTypes.ERROR)
+            utils.logDebugMessage(
+                f"Error verifying jobs: {e}", utils.MessageTypes.ERROR
+            )
 
     return jobs
-    
+
 
 def update_job(job: models.Job):
     if initialized:
@@ -48,13 +55,17 @@ def update_job(job: models.Job):
 
     return job
 
+
 def attached_resume_to_job(job: models.Job, resume: str):
     if initialized:
         try:
             utils.logDebugMessage(f"Attaching resume to job: {job}")
             backend_api.attached_resume_to_job(job.linkedin_job_id, resume)
         except Exception as e:
-            utils.logDebugMessage(f"Error attaching resume to job: {e}", utils.MessageTypes.ERROR)
+            utils.logDebugMessage(
+                f"Error attaching resume to job: {e}", utils.MessageTypes.ERROR
+            )
+
 
 def get_answer_by_question(question):
     if initialized:
@@ -62,7 +73,9 @@ def get_answer_by_question(question):
             utils.logDebugMessage(f"Getting answer for question: {question}")
             # TODO: Implement this
         except Exception as e:
-            utils.logDebugMessage(f"Error getting answer for question: {e}", utils.MessageTypes.ERROR)
+            utils.logDebugMessage(
+                f"Error getting answer for question: {e}", utils.MessageTypes.ERROR
+            )
 
 
 def post_question(question):
@@ -71,7 +84,9 @@ def post_question(question):
             utils.logDebugMessage(f"Posting question: {question} with answer:")
             # TODO: Implement this
         except Exception as e:
-            utils.logDebugMessage(f"Error posting question: {e}", utils.MessageTypes.ERROR)
+            utils.logDebugMessage(
+                f"Error posting question: {e}", utils.MessageTypes.ERROR
+            )
 
 
 def applied_to_job(job: models.Job):
@@ -80,4 +95,6 @@ def applied_to_job(job: models.Job):
             utils.logDebugMessage(f"Marking job as applied: {job}")
             backend_api.applied_to_job(job.linkedin_job_id)
         except Exception as e:
-            utils.logDebugMessage(f"Error marking job as applied: {e}", utils.MessageTypes.ERROR)
+            utils.logDebugMessage(
+                f"Error marking job as applied: {e}", utils.MessageTypes.ERROR
+            )

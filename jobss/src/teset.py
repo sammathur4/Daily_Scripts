@@ -6,9 +6,11 @@ jobs = scrape_jobs(
     search_term="software engineer",
     location="Dallas, TX",
     results_wanted=20,
-    hours_old=72, # (only Linkedin/Indeed is hour specific, others round up to days old)
-    country_indeed='USA'  # only needed for indeed / glassdoor
+    hours_old=72,  # (only Linkedin/Indeed is hour specific, others round up to days old)
+    country_indeed="USA",  # only needed for indeed / glassdoor
 )
 print(f"Found {len(jobs)} jobs")
 print(jobs.head())
-jobs.to_csv("jobs.csv", quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", index=False) # to_xlsx
+jobs.to_csv(
+    "jobs.csv", quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", index=False
+)  # to_xlsx

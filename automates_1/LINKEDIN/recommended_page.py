@@ -5,8 +5,10 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.common.exceptions import ElementNotInteractableException
+
 # from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+
 # from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -14,17 +16,18 @@ from selenium.webdriver.chrome.service import Service
 from time import sleep
 
 home_directory = path.expanduser("~")
-local_bin_directory = home_directory + '/bin/'
+local_bin_directory = home_directory + "/bin/"
 
 
-class LinkedinBot():
+class LinkedinBot:
 
     def __init__(self):
         # term = self.term
         self.page_number = 5
         chrome_options = Options()
         chrome_options.add_argument(
-            f"--user-data-dir={local_bin_directory}/chrome-data")
+            f"--user-data-dir={local_bin_directory}/chrome-data"
+        )
         chrome_options.add_experimental_option("useAutomationExtension", False)
 
         service = Service()
@@ -44,13 +47,15 @@ class LinkedinBot():
         try:
             next_page_list_item = self.driver.find_element(
                 by=By.XPATH,
-                value=f"//li[@data-test-pagination-page-btn='{self.page_number}']")
+                value=f"//li[@data-test-pagination-page-btn='{self.page_number}']",
+            )
             print(next_page_list_item)
             print(next_page_list_item.get_attribute("class"))
-            next_page_button = next_page_list_item.find_element(by=By.TAG_NAME,
-                                                                value='button')
+            next_page_button = next_page_list_item.find_element(
+                by=By.TAG_NAME, value="button"
+            )
             print(next_page_button)
-            print(next_page_button.get_attribute('aria-label'))
+            print(next_page_button.get_attribute("aria-label"))
             next_page_button.click()
         except NoSuchElementException as NoSuch:
             print(NoSuch, "\n cool enough")
@@ -61,7 +66,8 @@ class LinkedinBot():
             # left panel jobs
             try:
                 left_panel_jobs = self.driver.find_elements(
-                    by=By.CLASS_NAME, value="jobs-search-results__list-item")
+                    by=By.CLASS_NAME, value="jobs-search-results__list-item"
+                )
             except NoSuchElementException as NoSuch:
                 print(NoSuch, "\n cool")
 
@@ -77,7 +83,8 @@ class LinkedinBot():
                 sleep(2)
                 try:
                     job_name_element = left_panel_jobs[j].find_element(
-                        by=By.CLASS_NAME, value='job-card-list__title')
+                        by=By.CLASS_NAME, value="job-card-list__title"
+                    )
                     # company_name_element = left_panel_jobs[j].find_element(
                     #     by=By.CLASS_NAME, value='job-card-container__company-name')
                     # location_element = left_panel_jobs[j].find_element(
@@ -86,22 +93,22 @@ class LinkedinBot():
                     jname = job_name_element.text
                     # cname = company_name_element.text
                     # lname = location_element.text
-                    job_url = job_name_element.get_attribute('href')
+                    job_url = job_name_element.get_attribute("href")
 
-                    with open(r'filename.txt', 'a') as f:
+                    with open(r"filename.txt", "a") as f:
                         print(jname, file=f)
                     self.driver.execute_script(
-                        "arguments[0].scrollIntoView(true);", left_panel_jobs[j])
-                    self.driver.switch_to.new_window('tab')
-                    self.driver._switch_to.window(
-                        self.driver.window_handles[1])
+                        "arguments[0].scrollIntoView(true);", left_panel_jobs[j]
+                    )
+                    self.driver.switch_to.new_window("tab")
+                    self.driver._switch_to.window(self.driver.window_handles[1])
                     self.driver.get(job_url)
                     sleep(2)
                     self.apply_job()
                     self.driver._switch_to.window(original_window)
                     j += 1
                 except ElementNotInteractableException:
-                    print('scroll a bit please, cannot see the element yet')
+                    print("scroll a bit please, cannot see the element yet")
                     sleep(2)
             self.change_page()
 
@@ -112,12 +119,12 @@ class LinkedinBot():
             try:
                 self.driver.find_element(
                     by=By.XPATH,
-                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']"
+                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']",
                 ).click()
-                print('Clicked the Easy Button')
+                print("Clicked the Easy Button")
                 gerat = False
             except NoSuchElementException:
-                print('Cannot find the button, click Another Job')
+                print("Cannot find the button, click Another Job")
                 break
             except NoSuchWindowException as win:
                 print("no window bro... ok, I believe you closed it.", win)
@@ -140,7 +147,9 @@ class LinkedinBot():
             # find the element for selecting resume
             try:
                 resume_button = self.driver.find_element(
-                    by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--1 artdeco-button--tertiary ember-view']")
+                    by=By.XPATH,
+                    value="//button[@class='artdeco-button artdeco-button--1 artdeco-button--tertiary ember-view']",
+                )
                 if resume_button.text == "Choose":
                     resume_button.click()
                     print("resume button clicked")
@@ -149,9 +158,9 @@ class LinkedinBot():
             try:
                 self.driver.find_element(
                     by=By.XPATH,
-                    value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']"
+                    value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']",
                 ).click()
-                print('Next / Submit', cc)
+                print("Next / Submit", cc)
                 if cc == 0:
                     input("Please enter appropriate data on web page")
                     cc = 5
@@ -169,7 +178,7 @@ class LinkedinBot():
             print(ns, "window might have been closed by user.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     rp = LinkedinBot()
     rp.click_easy_jobs()
